@@ -4,5 +4,5 @@ from .views import homepage, list_posts, post_detail
 urlpatterns = [
     path('homepage/', homepage, name='homepage'),
     path('', list_posts, name='list_posts'),
-    path('<int:post_index>/', post_detail, name='post_detail'),
+    path('<int:post_id>/', post_detail, name='post_detail'),
 ]
