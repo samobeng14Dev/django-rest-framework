@@ -1,6 +1,8 @@
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from .permissions import ReadOnly, AuthorOrReadOnly
+
 from rest_framework import status, generics, mixins
 from rest_framework.decorators import api_view, APIView
 from .models import Post
@@ -14,7 +16,7 @@ class PostListCreateView(generics.GenericAPIView, mixins.ListModelMixin, mixins.
 
     """
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Post.objects.all()
 
     def get(self, request: Request, *args, **kwargs):
@@ -46,6 +48,7 @@ class PostRetrieveUpdateDeleteView(generics.GenericAPIView, mixins.RetrieveModel
     """
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+    permission_classes = [AuthorOrReadOnly]
 
     def get(self, request: Request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
