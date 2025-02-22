@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'accounts',
+    'drf_yasg',
 
     # third-party apps
     'rest_framework',
@@ -65,13 +66,23 @@ ROOT_URLCONF = 'simpleblog.urls'
 REST_FRAMEWORK={
     "NON_FIELD_ERRORS_KEY":"error",
     "DEFAULT_AUTHENTICATION_CLASSES":(
-        "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
+        
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES":(
-        "rest_framework.permissions.IsAuthenticated", 
-        )
+    "DEFAULT_PERMISSION_CLASSES":( "rest_framework.permissions.IsAuthenticated", ),
+    "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE":3,
+    
+}
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+      
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
 }
 
 SIMPLE_JWT={

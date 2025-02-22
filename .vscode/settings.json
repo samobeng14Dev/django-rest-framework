@@ -1,6 +1,9 @@
 {
-    "cSpell.words": [
-        "authtoken",
-        "simplejwt"
-    ]
+	"cSpell.words": ["authtoken", "redoc", "simplejwt", "yasg"],
+	"window.density.editorTabHeight": "default",
+	"zenMode.hideActivityBar": false,
+	"zenMode.hideLineNumbers": true,
+	"zenMode.fullScreen": false,
+	"zenMode.centerLayout": false,
+	"zenMode.hideStatusBar": false
 }
